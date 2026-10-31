@@ -3,7 +3,7 @@ import pandas as pd
 import math
 import networkx as nx
 
-def fit_rulsif(X_ref, X_new, alpha=0.1, n_centers=100, sigma=None, lambda_reg=1e-6, *, rng = np.random.Generator | None = None):
+def fit_rulsif(X_ref, X_new, alpha=0.1, n_centers=100, sigma=None, lambda_reg=1e-6, *, rng: np.random.Generator | None = None):
     """
     Fit an alpha-relative density ratio model g(x) ~ p_new(x)/[alpha*p_new(x)+(1-alpha)*p_ref(x)]
     using Gaussian kernel basis. Returns the learned function handle and the estimated divergence.
