@@ -33,8 +33,7 @@ def synthetic_data(
 ):
     """
     Generate synthetic (causal) time series data with options for change points,
-    nonlinear effects, lag dependence, heteroscedastic noise, latent confounding,
-    and interventions.
+    nonlinear effects, lag dependence, heteroscedastic noise, and latent confounding.
     
     Parameters:
         base_matrix: np.ndarray, shape (num_vars, num_vars)
@@ -188,9 +187,8 @@ def synthetic_data(
                 X[t, :] = np.tanh(X[t, :])
 
     col_names = [f"Var{i}" for i in range(num_vars)]
-    X_cpu = np.asnumpy(X)   
     
-    df = pd.DataFrame(X_cpu, columns=col_names)
+    df = pd.DataFrame(X, columns=col_names)
     return df
 
 
@@ -217,7 +215,7 @@ def generate_datasets(test_configs, base_matrix):
             noise=config['noise'] if 'noise' in config.keys() else 1,
             baseline=0.0,
             change_points=config["change_points"] if 'change_points' in config.keys() else None,
-            transition_type=config["abrupt"] if 'transition_type' in config.keys() else 'abrupt',
+            transition_type=config["transition_type"] if 'transition_type' in config.keys() else 'abrupt',
             transition_duration=0,
             nonlinear=config['nonlinear'] if 'nonlinear' in config.keys() else False,
             include_lags=config['lags'] if 'lags' in config.keys() else False,
@@ -225,8 +223,7 @@ def generate_datasets(test_configs, base_matrix):
             noise_function=lambda t: 1 + 0.001*t if 'heteroscedastic' in config.keys() else None,
             n_latent=config["n_latent"] if 'n_latent' in config.keys() else 0,
             latent_strength=0.5  if 'n_latent' in config.keys() else 0,
-            interventions=config["interventions"] if 'interventions' in config.keys() else None,
-            seed=None
+            seed=config['seed'] if 'seed' in config.keys() else None
         )
         datasets.append((df, config))
 

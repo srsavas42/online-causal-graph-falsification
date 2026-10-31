@@ -7,7 +7,7 @@ import networkx as nx
 import numpy as np
 import pandas as pd
 
-from .cc_rulsif import (
+from .ccrulsif import (
     calibrate_delta,
     fit_rulsif,
     get_child_parent_sets,
@@ -68,6 +68,7 @@ class CCRuLSIFDetector:
         self._alpha = alpha
         self._n_centers = n_centers
         self._window_size = window_size
+        self._rng = np.random.default_rng(random_state)
 
         # Baseline threhsold calibration
         self._thresholds = calibrate_delta(
@@ -121,6 +122,7 @@ class CCRuLSIFDetector:
                 X_new,
                 alpha=self._alpha,
                 n_centers=self._n_centers,
+                rng = self._rng
             )
 
             score = float(divergence)
