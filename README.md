@@ -1,6 +1,6 @@
 # Online Causal Graph Falsification with CC-RuLSIF
 
-[![Tests](https://github.com/srsavas42/online-causal-graph-falsification/actions/workflows/tests.yml/badge.svg)](https://github.com/srsavas42/online-causal-graph-falsification/actions/workflows/tests.yml)
+[![Tests](https://github.com/srsavas42/online-causal-graph-falsification/actions/workflows/tests.yaml/badge.svg)](https://github.com/srsavas42/online-causal-graph-falsification/actions/workflows/tests.yaml)
 
 CC-RuLSIF is an online change-detection method developed as part of my master's thesis in Computer Science at Northwestern University.
 
